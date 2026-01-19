@@ -18,27 +18,26 @@ h1 {
     font-weight: 800;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    background: linear-gradient(90deg, #ffd700, #e74c3c, #ffd700);
+    background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shimmer 3s linear infinite;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 40px rgba(231, 76, 60, 0.3);
+    text-shadow: 0 0 40px rgba(255, 140, 0, 0.3);
     position: relative;
     padding: 1rem 0;
 }
 
 h1::before,
 h1::after {
-    content: '⬢';
+    content: '🐪';
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.5rem;
-    opacity: 0.6;
-    -webkit-text-fill-color: #e74c3c;
+    -webkit-text-fill-color: initial;
 }
 
 h1::before {
@@ -68,7 +67,7 @@ h2 a {
 }
 
 h2 a:hover {
-    color: #e74c3c;
+    color: #ff8c00;
     text-decoration: underline;
 }
 
@@ -80,7 +79,7 @@ p a {
 }
 
 p a:hover {
-    color: #e74c3c;
+    color: #ff8c00;
 }
 
 table {
