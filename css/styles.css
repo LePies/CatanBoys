@@ -216,6 +216,12 @@ tbody tr:nth-child(3) td:nth-child(2) {
         margin: 2rem 0 1.25rem;
     }
 
+    /* Scale down background icon on iPad */
+    .bg-icon {
+        width: 160px;
+        height: 160px;
+    }
+
     table {
         max-width: 100%;
     }
@@ -248,9 +254,10 @@ tbody tr:nth-child(3) td:nth-child(2) {
         display: none;
     }
 
-    /* Hide background icon on mobile */
+    /* Scale down background icon on mobile */
     .bg-icon {
-        display: none;
+        width: 120px;
+        height: 120px;
     }
 
     h2 {
@@ -291,6 +298,12 @@ tbody tr:nth-child(3) td:nth-child(2) {
 
     h2 {
         font-size: 1rem;
+    }
+
+    /* Smaller background icon on tiny screens */
+    .bg-icon {
+        width: 100px;
+        height: 100px;
     }
 
     table {
