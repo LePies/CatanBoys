@@ -5,7 +5,7 @@
 | Rank | Player     | Wins | Games Played |
 |------|------------|------|--------------|
 | 1 | Micki | 1½ | 2 |
-| 2 | Daniel | ½ | 4 |
+| 2 | Daniel | ½ | 2 |
 | - | Morn | 0 | 2 |
 | - | Oliver | 0 | 2 |
 | - | Andreas | 0 | 2 |
