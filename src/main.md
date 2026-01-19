@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="css/styles.css">
-
 # Catan Leaderboard
 
 | Rank | Player     | Wins | Games Played |

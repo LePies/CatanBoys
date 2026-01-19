@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="../css/caravan-styles.css">
-
 # Caravan
 
 [← Back to Overview](../index.html)

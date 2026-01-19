@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="../css/styles.css">
-
 # Standard
 
 [← Back to Overview](../index.html)

@@ -32,20 +32,45 @@ h1 {
 
 h1::before,
 h1::after {
-    content: '🐪';
+    content: '';
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.5rem;
-    -webkit-text-fill-color: initial;
+    width: 44px;
+    height: 30px;
+    background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 75'%3E%3Cpath d='M10 42 L10 10 Q20 18 30 10 L30 42 Z' fill='black'/%3E%3Cpath d='M34 42 L34 10 Q55 18 76 10 L76 42 Z' fill='black'/%3E%3Cpath d='M80 42 L80 10 Q90 18 100 10 L100 42 Z' fill='black'/%3E%3Crect x='10' y='42' width='90' height='8' fill='black'/%3E%3Ccircle cx='26' cy='58' r='13' fill='black'/%3E%3Ccircle cx='84' cy='58' r='13' fill='black'/%3E%3Ccircle cx='26' cy='58' r='6' fill='white'/%3E%3Ccircle cx='84' cy='58' r='6' fill='white'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 75'%3E%3Cpath d='M10 42 L10 10 Q20 18 30 10 L30 42 Z' fill='black'/%3E%3Cpath d='M34 42 L34 10 Q55 18 76 10 L76 42 Z' fill='black'/%3E%3Cpath d='M80 42 L80 10 Q90 18 100 10 L100 42 Z' fill='black'/%3E%3Crect x='10' y='42' width='90' height='8' fill='black'/%3E%3Ccircle cx='26' cy='58' r='13' fill='black'/%3E%3Ccircle cx='84' cy='58' r='13' fill='black'/%3E%3Ccircle cx='26' cy='58' r='6' fill='white'/%3E%3Ccircle cx='84' cy='58' r='6' fill='white'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    opacity: 0.9;
+    animation: wagonRoll 3s ease-in-out infinite;
 }
 
 h1::before {
-    left: 10%;
+    left: 8%;
 }
 
 h1::after {
-    right: 10%;
+    right: 8%;
+    transform: translateY(-50%) scaleX(-1);
+    animation-delay: 1.5s;
+}
+
+@keyframes wagonRoll {
+    0%, 100% { opacity: 0.7; transform: translateY(-50%) translateY(0); }
+    50% { opacity: 1; transform: translateY(-50%) translateY(-2px); }
+}
+
+h1::after {
+    animation-name: wagonRollReverse;
+}
+
+@keyframes wagonRollReverse {
+    0%, 100% { opacity: 0.7; transform: translateY(-50%) scaleX(-1) translateY(0); }
+    50% { opacity: 1; transform: translateY(-50%) scaleX(-1) translateY(-2px); }
 }
 
 @keyframes shimmer {
@@ -138,22 +163,137 @@ tbody tr:nth-child(3) td:nth-child(2) {
     font-weight: 600;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* Responsive - iPad Landscape */
+@media (max-width: 1024px) {
     body {
-        padding: 1rem;
+        padding: 1.5rem;
     }
 
     h1 {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
+    }
+
+    h1::before {
+        left: 6%;
+    }
+
+    h1::after {
+        right: 6%;
+    }
+}
+
+/* Responsive - iPad Portrait */
+@media (max-width: 768px) {
+    body {
+        padding: 1.25rem;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        padding: 0.75rem 0;
+    }
+
+    h1::before,
+    h1::after {
+        width: 32px;
+        height: 22px;
+    }
+
+    h1::before {
+        left: 2%;
+    }
+
+    h1::after {
+        right: 2%;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        margin: 2rem 0 1.25rem;
     }
 
     table {
-        font-size: 0.9rem;
+        max-width: 100%;
     }
 
-    thead th,
+    thead th {
+        font-size: 0.8rem;
+        padding: 0.875rem 0.5rem;
+    }
+
     tbody td {
         padding: 0.75rem 0.5rem;
+    }
+}
+
+/* Responsive - Mobile Phones */
+@media (max-width: 480px) {
+    body {
+        padding: 1rem 0.75rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+        padding: 0.5rem 0;
+        letter-spacing: 0.02em;
+    }
+
+    /* Hide camel decorations on small screens */
+    h1::before,
+    h1::after {
+        display: none;
+    }
+
+    h2 {
+        font-size: 1.15rem;
+        margin: 1.5rem 0 1rem;
+    }
+
+    table {
+        font-size: 0.85rem;
+        border-radius: 8px;
+    }
+
+    thead th {
+        font-size: 0.7rem;
+        padding: 0.625rem 0.375rem;
+        letter-spacing: 0.02em;
+    }
+
+    tbody td {
+        padding: 0.625rem 0.375rem;
+    }
+
+    /* Back link styling for mobile */
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+    body {
+        padding: 0.75rem 0.5rem;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    table {
+        font-size: 0.8rem;
+    }
+
+    thead th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.25rem;
+    }
+
+    tbody td {
+        padding: 0.5rem 0.25rem;
     }
 }
