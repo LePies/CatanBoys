@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="..\caravan-styles.css">
+<link rel="stylesheet" href="../css/caravan-styles.css">
 
 # Caravan
 
@@ -14,4 +14,5 @@
 | - | Fournaise | 0 | 1 |
 | - | Emil | 0 | 0 |
 | - | Rasmus | 0 | 0 |
+| - | Alex | 0 | 1 |
 | - | Reimer | 0 | 0 |

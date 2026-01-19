@@ -1,22 +1,24 @@
 # Convert markdown files to HTML using pandoc
 
-$rootDir = Join-Path $PSScriptRoot "root"
+$srcDir = Join-Path $PSScriptRoot "src"
+$siteDir = Join-Path $PSScriptRoot "site"
 
-# Ensure root directory exists
-if (!(Test-Path $rootDir)) {
-    New-Item -ItemType Directory -Path $rootDir | Out-Null
+# Ensure site directory exists
+if (!(Test-Path $siteDir)) {
+    New-Item -ItemType Directory -Path $siteDir | Out-Null
 }
 
-# Convert main.md to index.html
-pandoc "$PSScriptRoot\main.md" -o "$rootDir\..\index.html"
-Write-Host "Converted main.md -> index.html"
+# Convert main.md to index.html (in root)
+pandoc "$srcDir\main.md" -o "$PSScriptRoot\index.html"
+Write-Host "Converted src/main.md -> index.html"
 
 # Convert caravan.md
-pandoc "$PSScriptRoot\caravan.md" -o "$rootDir\caravan.html"
-Write-Host "Converted caravan.md -> root/caravan.html"
+pandoc "$srcDir\caravan.md" -o "$siteDir\caravan.html"
+Write-Host "Converted src/caravan.md -> site/caravan.html"
 
 # Convert standard.md
-pandoc "$PSScriptRoot\standard.md" -o "$rootDir\standard.html"
-Write-Host "Converted standard.md -> root/standard.html"
+pandoc "$srcDir\standard.md" -o "$siteDir\standard.html"
+Write-Host "Converted src/standard.md -> site/standard.html"
 
 Write-Host "`nAll files converted successfully!"
+Write-Host "Open site/index.html to view the leaderboard."

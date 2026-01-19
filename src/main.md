@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/styles.css">
+
 # Catan Leaderboard
 
 | Rank | Player     | Wins | Games Played |
@@ -11,9 +12,10 @@
 | - | Fournaise | 0 | 2 |
 | - | Emil | 0 | 1 |
 | - | Rasmus | 0 | 1 |
+| - | Alex | 0 | 1 |
 | - | Reimer | 0 | 0 |
 
-## [Caravan](./root/caravan.html)
+## [Caravan](site/caravan.html)
 
 
-## [Standard](./root/standard.html)
+## [Standard](site/standard.html)

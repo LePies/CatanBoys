@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="..\styles.css">
+<link rel="stylesheet" href="../css/styles.css">
 
 # Standard
 
@@ -14,4 +14,5 @@
 | - | Fournaise | 0 | 1 |
 | - | Emil | 0 | 1 |
 | - | Rasmus | 0 | 1 |
+| - | Alex | 0 | 0 |
 | - | Reimer | 0 | 0 |
