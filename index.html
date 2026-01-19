@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catan Leaderboard</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <h1 id="catan-leaderboard">Catan Leaderboard</h1>
-<table>
+<table id="leaderboard">
 <thead>
 <tr>
 <th>Rank</th>
@@ -19,69 +20,16 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>1</td>
-<td>Micki</td>
-<td>1½</td>
-<td>3</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Oliver</td>
-<td>1</td>
-<td>4</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Morn</td>
-<td>1</td>
-<td>4</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Daniel</td>
-<td>½</td>
-<td>4</td>
-</tr>
-<tr>
-<td>-</td>
-<td>Andreas</td>
-<td>0</td>
-<td>3</td>
-</tr>
-<tr>
-<td>-</td>
-<td>Fournaise</td>
-<td>0</td>
-<td>2</td>
-</tr>
-<tr>
-<td>-</td>
-<td>Emil</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>-</td>
-<td>Rasmus</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>-</td>
-<td>Alex</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>-</td>
-<td>Reimer</td>
-<td>0</td>
-<td>0</td>
-</tr>
 </tbody>
 </table>
 <h2 id="caravan"><a href="site/caravan.html">Caravan</a></h2>
 <h2 id="standard"><a href="site/standard.html">Standard</a></h2>
+<script src="js/leaderboard.js"></script>
+<script>
+  initLeaderboard('combined', {
+    standard: 'data/standard.csv',
+    caravan: 'data/caravan.csv'
+  });
+</script>
 </body>
 </html>
