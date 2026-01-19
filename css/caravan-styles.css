@@ -257,9 +257,14 @@ tbody tr:nth-child(3) td:nth-child(2) {
         letter-spacing: 0.02em;
     }
 
-    /* Hide camel decorations on small screens */
+    /* Hide wagon decorations on small screens */
     h1::before,
     h1::after {
+        display: none;
+    }
+
+    /* Hide background icon on mobile */
+    .bg-icon {
         display: none;
     }
 
