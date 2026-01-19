@@ -1,6 +1,6 @@
 # Catan Leaderboard
 
-| Rank | Player     | Wins | Games Played |
+<!-- | Rank | Player     | Wins | Games Played |
 |------|------------|------|--------------|
 | 1 | Micki | 1½ | 3 |
 | 2 | Oliver | 1 | 4 |
@@ -10,4 +10,4 @@
 | - | Fournaise | 0 | 2 |
 | - | Emil | 0 | 1 |
 | - | Rasmus | 0 | 1 |
-| - | Reimer | 0 | 0 |
+| - | Reimer | 0 | 0 | -->
