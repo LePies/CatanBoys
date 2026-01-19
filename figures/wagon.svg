@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Wagon cover (canvas top) -->
+  <path d="M15,45 Q50,15 85,45 L85,55 Q50,35 15,55 Z" fill="#f5e6c8" stroke="#8b4513" stroke-width="2"/>
+  
+  <!-- Wagon body -->
+  <rect x="12" y="50" width="76" height="20" fill="#8b4513" stroke="#5c3317" stroke-width="2" rx="2"/>
+  
+  <!-- Wheels -->
+  <circle cx="25" cy="75" r="12" fill="none" stroke="#5c3317" stroke-width="4"/>
+  <circle cx="25" cy="75" r="3" fill="#5c3317"/>
+  <circle cx="75" cy="75" r="12" fill="none" stroke="#5c3317" stroke-width="4"/>
+  <circle cx="75" cy="75" r="3" fill="#5c3317"/>
+  
+  <!-- Wheel spokes -->
+  <g stroke="#5c3317" stroke-width="2">
+    <line x1="25" y1="63" x2="25" y2="87"/>
+    <line x1="13" y1="75" x2="37" y2="75"/>
+    <line x1="75" y1="63" x2="75" y2="87"/>
+    <line x1="63" y1="75" x2="87" y2="75"/>
+  </g>
+</svg>
