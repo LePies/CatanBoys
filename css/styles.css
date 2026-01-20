@@ -107,7 +107,8 @@ body::before {
     border: 1px solid rgba(231, 76, 60, 0.3);
 }
 
-.sidebar-nav a svg {
+.sidebar-nav a svg,
+.sidebar-nav a img {
     width: 20px;
     height: 20px;
     opacity: 0.8;
