@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Wood/Forest Profile - Green forest theme -->
+  <defs>
+    <linearGradient id="wood-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d5a27"/>
+      <stop offset="100%" style="stop-color:#1a3d16"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexagonal background -->
+  <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#wood-bg)" stroke="#5d4e37" stroke-width="3"/>
+  
+  <!-- Pine trees -->
+  <!-- Back trees -->
+  <polygon points="25,70 25,45 15,55 25,40 18,48 25,35 32,48 25,40 35,55" fill="#1e4620"/>
+  <polygon points="75,70 75,45 65,55 75,40 68,48 75,35 82,48 75,40 85,55" fill="#1e4620"/>
+  
+  <!-- Center tree (larger) -->
+  <rect x="47" y="70" width="6" height="15" fill="#5d4037"/>
+  <polygon points="50,20 35,50 40,50 30,65 42,65 38,75 62,75 58,65 70,65 60,50 65,50" fill="#2e7d32"/>
+  <polygon points="50,25 38,48 44,48 36,60 46,60 42,70 58,70 54,60 64,60 56,48 62,48" fill="#388e3c"/>
+  
+  <!-- Wood logs at bottom -->
+  <ellipse cx="30" cy="82" rx="8" ry="5" fill="#8d6e63"/>
+  <ellipse cx="30" cy="82" rx="5" ry="3" fill="#a1887f"/>
+  <ellipse cx="70" cy="82" rx="8" ry="5" fill="#8d6e63"/>
+  <ellipse cx="70" cy="82" rx="5" ry="3" fill="#a1887f"/>
+</svg>

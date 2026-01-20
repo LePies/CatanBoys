@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Sheep/Wool Profile - Green pasture theme -->
+  <defs>
+    <linearGradient id="sheep-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7dcea0"/>
+      <stop offset="100%" style="stop-color:#27ae60"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexagonal background -->
+  <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#sheep-bg)" stroke="#1e8449" stroke-width="3"/>
+  
+  <!-- Grass tufts -->
+  <path d="M15,80 Q17,75 15,70 M18,80 Q20,73 18,68 M21,80 Q23,76 21,72" stroke="#229954" stroke-width="2" fill="none"/>
+  <path d="M75,82 Q77,77 75,72 M78,82 Q80,75 78,70 M81,82 Q83,78 81,74" stroke="#229954" stroke-width="2" fill="none"/>
+  
+  <!-- Sheep body (fluffy wool) -->
+  <ellipse cx="50" cy="55" rx="25" ry="18" fill="#ecf0f1"/>
+  <!-- Wool texture -->
+  <circle cx="35" cy="50" r="8" fill="#f8f9f9"/>
+  <circle cx="50" cy="45" r="9" fill="#f8f9f9"/>
+  <circle cx="65" cy="50" r="8" fill="#f8f9f9"/>
+  <circle cx="40" cy="60" r="7" fill="#f8f9f9"/>
+  <circle cx="55" cy="58" r="8" fill="#f8f9f9"/>
+  <circle cx="68" cy="60" r="6" fill="#f8f9f9"/>
+  
+  <!-- Sheep head -->
+  <ellipse cx="50" cy="32" rx="10" ry="9" fill="#2c3e50"/>
+  
+  <!-- Ears -->
+  <ellipse cx="38" cy="30" rx="5" ry="3" fill="#2c3e50"/>
+  <ellipse cx="62" cy="30" rx="5" ry="3" fill="#2c3e50"/>
+  
+  <!-- Face details -->
+  <ellipse cx="46" cy="30" rx="2" ry="2.5" fill="#ecf0f1"/>
+  <ellipse cx="54" cy="30" rx="2" ry="2.5" fill="#ecf0f1"/>
+  <circle cx="46" cy="30" r="1" fill="#1a252f"/>
+  <circle cx="54" cy="30" r="1" fill="#1a252f"/>
+  
+  <!-- Nose -->
+  <ellipse cx="50" cy="36" rx="2" ry="1.5" fill="#5d6d7e"/>
+  
+  <!-- Legs -->
+  <rect x="38" y="68" width="4" height="12" rx="2" fill="#2c3e50"/>
+  <rect x="58" y="68" width="4" height="12" rx="2" fill="#2c3e50"/>
+</svg>

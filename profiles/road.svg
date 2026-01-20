@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Road Profile - Longest road theme -->
+  <defs>
+    <linearGradient id="road-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60"/>
+      <stop offset="100%" style="stop-color:#1e8449"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexagonal background -->
+  <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#road-bg)" stroke="#145a32" stroke-width="3"/>
+  
+  <!-- Road path winding -->
+  <path d="M15,80 Q25,70 30,55 Q35,40 50,35 Q65,30 75,40 Q85,50 85,65" 
+        stroke="#d35400" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Road inner detail -->
+  <path d="M15,80 Q25,70 30,55 Q35,40 50,35 Q65,30 75,40 Q85,50 85,65" 
+        stroke="#e67e22" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Settlement markers along road -->
+  <!-- Start point -->
+  <circle cx="15" cy="80" r="6" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="2"/>
+  
+  <!-- Middle point -->
+  <circle cx="50" cy="35" r="6" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="2"/>
+  
+  <!-- End point -->
+  <circle cx="85" cy="65" r="6" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="2"/>
+</svg>

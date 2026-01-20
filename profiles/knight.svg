@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Knight/Soldier Profile - Development card theme -->
+  <defs>
+    <linearGradient id="knight-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2980b9"/>
+      <stop offset="100%" style="stop-color:#1a5276"/>
+    </linearGradient>
+    <linearGradient id="armor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#bdc3c7"/>
+      <stop offset="50%" style="stop-color:#7f8c8d"/>
+      <stop offset="100%" style="stop-color:#bdc3c7"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexagonal background -->
+  <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#knight-bg)" stroke="#154360" stroke-width="3"/>
+  
+  <!-- Shield behind -->
+  <path d="M50,25 L70,35 L70,55 Q70,70 50,80 Q30,70 30,55 L30,35 Z" fill="#c0392b" stroke="#922b21" stroke-width="2"/>
+  
+  <!-- Shield cross -->
+  <rect x="47" y="30" width="6" height="45" fill="#f1c40f"/>
+  <rect x="35" y="45" width="30" height="6" fill="#f1c40f"/>
+  
+  <!-- Helmet -->
+  <ellipse cx="50" cy="42" rx="15" ry="18" fill="url(#armor)"/>
+  
+  <!-- Visor slit -->
+  <rect x="38" y="40" width="24" height="4" fill="#1a252f"/>
+  
+  <!-- Helmet crest -->
+  <path d="M50,24 Q55,20 50,15 Q45,20 50,24" fill="#c0392b"/>
+  <path d="M50,15 L50,10" stroke="#c0392b" stroke-width="3"/>
+  
+  <!-- Plume -->
+  <ellipse cx="50" cy="12" rx="8" ry="4" fill="#c0392b"/>
+  <ellipse cx="50" cy="10" rx="6" ry="3" fill="#e74c3c"/>
+  
+  <!-- Sword on side -->
+  <rect x="72" y="30" width="3" height="35" fill="url(#armor)"/>
+  <rect x="69" y="30" width="9" height="6" fill="#f1c40f"/>
+  <polygon points="73.5,65 71,72 76,72" fill="url(#armor)"/>
+  
+  <!-- Armor shoulders hint -->
+  <ellipse cx="32" cy="60" rx="8" ry="5" fill="url(#armor)"/>
+  <ellipse cx="68" cy="60" rx="8" ry="5" fill="url(#armor)"/>
+</svg>

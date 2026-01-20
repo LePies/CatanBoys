@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Robber Profile - Dark mysterious theme -->
+  <defs>
+    <linearGradient id="robber-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a4a4a"/>
+      <stop offset="100%" style="stop-color:#1a1a1a"/>
+    </linearGradient>
+    <radialGradient id="robber-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#6b4423"/>
+      <stop offset="100%" style="stop-color:#1a1a1a"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Hexagonal background -->
+  <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#robber-bg)" stroke="#000000" stroke-width="3"/>
+  
+  <!-- Desert glow behind robber -->
+  <ellipse cx="50" cy="60" rx="30" ry="20" fill="url(#robber-glow)" opacity="0.5"/>
+  
+  <!-- Robber figure (classic pawn shape) -->
+  <!-- Base -->
+  <ellipse cx="50" cy="82" rx="18" ry="6" fill="#1a1a1a"/>
+  
+  <!-- Body -->
+  <path d="M32,82 Q32,50 50,45 Q68,50 68,82 Z" fill="#2c2c2c"/>
+  
+  <!-- Head -->
+  <circle cx="50" cy="35" r="14" fill="#2c2c2c"/>
+  
+  <!-- Mysterious eyes -->
+  <ellipse cx="44" cy="33" rx="3" ry="2" fill="#c0392b"/>
+  <ellipse cx="56" cy="33" rx="3" ry="2" fill="#c0392b"/>
+  
+  <!-- Eye glow -->
+  <ellipse cx="44" cy="33" rx="1.5" ry="1" fill="#e74c3c"/>
+  <ellipse cx="56" cy="33" rx="1.5" ry="1" fill="#e74c3c"/>
+  
+  <!-- Shadow beneath -->
+  <ellipse cx="50" cy="85" rx="22" ry="4" fill="#000000" opacity="0.3"/>
+  
+  <!-- "7" symbol (rolled to activate robber) -->
+  <text x="50" y="70" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#c0392b" text-anchor="middle">7</text>
+</svg>

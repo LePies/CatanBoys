@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Dice Profile - Lucky roll theme -->
+  <defs>
+    <linearGradient id="dice-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c"/>
+      <stop offset="100%" style="stop-color:#c0392b"/>
+    </linearGradient>
+    <linearGradient id="dice-face" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#ecf0f1"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexagonal background -->
+  <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#dice-bg)" stroke="#922b21" stroke-width="3"/>
+  
+  <!-- Dice 1 (showing 6) - tilted left -->
+  <g transform="rotate(-15, 35, 45)">
+    <rect x="15" y="25" width="40" height="40" rx="5" fill="url(#dice-face)" stroke="#bdc3c7" stroke-width="1"/>
+    <!-- Dots for 6 -->
+    <circle cx="25" cy="35" r="4" fill="#2c3e50"/>
+    <circle cx="25" cy="45" r="4" fill="#2c3e50"/>
+    <circle cx="25" cy="55" r="4" fill="#2c3e50"/>
+    <circle cx="45" cy="35" r="4" fill="#2c3e50"/>
+    <circle cx="45" cy="45" r="4" fill="#2c3e50"/>
+    <circle cx="45" cy="55" r="4" fill="#2c3e50"/>
+  </g>
+  
+  <!-- Dice 2 (showing 5) - tilted right -->
+  <g transform="rotate(20, 65, 55)">
+    <rect x="45" y="35" width="40" height="40" rx="5" fill="url(#dice-face)" stroke="#bdc3c7" stroke-width="1"/>
+    <!-- Dots for 5 -->
+    <circle cx="55" cy="45" r="4" fill="#c0392b"/>
+    <circle cx="55" cy="65" r="4" fill="#c0392b"/>
+    <circle cx="65" cy="55" r="4" fill="#c0392b"/>
+    <circle cx="75" cy="45" r="4" fill="#c0392b"/>
+    <circle cx="75" cy="65" r="4" fill="#c0392b"/>
+  </g>
+  
+  <!-- Motion lines -->
+  <path d="M20,75 Q15,78 12,82" stroke="#f9e79f" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M25,78 Q22,82 20,87" stroke="#f9e79f" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M80,25 Q85,22 88,18" stroke="#f9e79f" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

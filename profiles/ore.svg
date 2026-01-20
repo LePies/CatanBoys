@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Ore/Mountain Profile - Gray mountain theme -->
+  <defs>
+    <linearGradient id="ore-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5d6d7e"/>
+      <stop offset="100%" style="stop-color:#2c3e50"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexagonal background -->
+  <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#ore-bg)" stroke="#1a252f" stroke-width="3"/>
+  
+  <!-- Mountains -->
+  <polygon points="50,20 20,75 80,75" fill="#566573"/>
+  <polygon points="50,20 35,50 50,45 65,50" fill="#7f8c8d"/>
+  <!-- Snow cap -->
+  <polygon points="50,20 42,32 50,30 58,32" fill="#ecf0f1"/>
+  
+  <!-- Second mountain -->
+  <polygon points="75,40 55,75 93,75" fill="#4a5568"/>
+  <polygon points="75,40 65,55 75,52 85,55" fill="#718096"/>
+  
+  <!-- Third mountain -->
+  <polygon points="25,45 7,75 45,75" fill="#4a5568"/>
+  <polygon points="25,45 18,58 25,55 32,58" fill="#718096"/>
+  
+  <!-- Ore crystals -->
+  <polygon points="40,65 37,75 43,75" fill="#3498db"/>
+  <polygon points="60,60 56,72 64,72" fill="#3498db"/>
+  <polygon points="50,68 47,78 53,78" fill="#2980b9"/>
+  
+  <!-- Sparkles -->
+  <circle cx="42" cy="67" r="1.5" fill="#ecf0f1"/>
+  <circle cx="58" cy="63" r="1.5" fill="#ecf0f1"/>
+  <circle cx="51" cy="70" r="1" fill="#ecf0f1"/>
+</svg>

@@ -1,5 +1,25 @@
 // Leaderboard CSV loader and renderer
 
+// Player profile picture mappings
+const playerProfiles = {
+    'Micki': 'city',
+    'Daniel': 'knight',
+    'Morn': 'ore',
+    'Mohr': 'settlement',
+    'Andreas': 'wheat',
+    'Fournaise': 'brick',
+    'Emil': 'wood',
+    'Rasmus': 'sheep',
+    'Alex': 'dice',
+    'Reimer': 'harbor'
+};
+
+// Get profile path for a player
+function getProfilePath(playerName, basePath = '') {
+    const profile = playerProfiles[playerName] || 'robber'; // Default to robber if no profile assigned
+    return `${basePath}profiles/${profile}.svg`;
+}
+
 async function loadCSV(path) {
     const response = await fetch(path);
     const text = await response.text();
@@ -75,10 +95,13 @@ function sortAndRankPlayers(players) {
     });
 }
 
-function renderPodiumPlace(player, position) {
+function renderPodiumPlace(player, position, basePath = '') {
+    const profilePath = getProfilePath(player.Player, basePath);
     return `
         <div class="podium-place">
-            <div class="avatar">${player.Initials}</div>
+            <div class="avatar">
+                <img src="${profilePath}" alt="${player.Player}">
+            </div>
             <div class="name">${player.Player}</div>
             <div class="score">${player.WinsFormatted} wins</div>
             <div class="stand">
@@ -88,11 +111,14 @@ function renderPodiumPlace(player, position) {
     `;
 }
 
-function renderLeaderboardItem(player) {
+function renderLeaderboardItem(player, basePath = '') {
+    const profilePath = getProfilePath(player.Player, basePath);
     return `
         <div class="leaderboard-item">
             <div class="item-rank">${player.Rank}</div>
-            <div class="item-avatar">${player.Initials}</div>
+            <div class="item-avatar">
+                <img src="${profilePath}" alt="${player.Player}">
+            </div>
             <div class="item-info">
                 <div class="item-name">${player.Player}</div>
                 <div class="item-games">${player.GamesPlayed} games played</div>
@@ -102,7 +128,7 @@ function renderLeaderboardItem(player) {
     `;
 }
 
-function renderLeaderboard(players, containerId = 'leaderboard-container') {
+function renderLeaderboard(players, containerId = 'leaderboard-container', basePath = '') {
     const container = document.getElementById(containerId);
     if (!container) return;
     
@@ -121,15 +147,15 @@ function renderLeaderboard(players, containerId = 'leaderboard-container') {
         
         // Podium order: 2nd, 1st, 3rd (visual layout)
         if (top3.length >= 2) {
-            html += renderPodiumPlace(top3[1], 2); // 2nd place (left)
+            html += renderPodiumPlace(top3[1], 2, basePath); // 2nd place (left)
         } else {
             html += '<div class="podium-place"></div>'; // Empty placeholder
         }
         
-        html += renderPodiumPlace(top3[0], 1); // 1st place (center)
+        html += renderPodiumPlace(top3[0], 1, basePath); // 1st place (center)
         
         if (top3.length >= 3) {
-            html += renderPodiumPlace(top3[2], 3); // 3rd place (right)
+            html += renderPodiumPlace(top3[2], 3, basePath); // 3rd place (right)
         } else {
             html += '<div class="podium-place"></div>'; // Empty placeholder
         }
@@ -141,7 +167,7 @@ function renderLeaderboard(players, containerId = 'leaderboard-container') {
     if (rest.length > 0) {
         html += '<div class="leaderboard">';
         rest.forEach(player => {
-            html += renderLeaderboardItem(player);
+            html += renderLeaderboardItem(player, basePath);
         });
         html += '</div>';
     }
@@ -185,7 +211,7 @@ function mergePlayers(standardPlayers, caravanPlayers) {
 }
 
 // Initialize leaderboard based on page type
-async function initLeaderboard(type, csvPath) {
+async function initLeaderboard(type, csvPath, basePath = '') {
     try {
         if (type === 'combined') {
             const [standard, caravan] = await Promise.all([
@@ -193,10 +219,10 @@ async function initLeaderboard(type, csvPath) {
                 loadCSV(csvPath.caravan)
             ]);
             const combined = mergePlayers(standard, caravan);
-            renderLeaderboard(combined);
+            renderLeaderboard(combined, 'leaderboard-container', basePath);
         } else {
             const players = await loadCSV(csvPath);
-            renderLeaderboard(players);
+            renderLeaderboard(players, 'leaderboard-container', basePath);
         }
     } catch (error) {
         console.error('Error loading leaderboard:', error);

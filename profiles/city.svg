@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- City Profile - Grand castle theme -->
+  <defs>
+    <linearGradient id="city-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8e44ad"/>
+      <stop offset="100%" style="stop-color:#6c3483"/>
+    </linearGradient>
+    <linearGradient id="castle-wall" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#bdc3c7"/>
+      <stop offset="100%" style="stop-color:#7f8c8d"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexagonal background -->
+  <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#city-bg)" stroke="#512e5f" stroke-width="3"/>
+  
+  <!-- Stars -->
+  <circle cx="20" cy="20" r="1" fill="#f9e79f"/>
+  <circle cx="80" cy="25" r="1.2" fill="#f9e79f"/>
+  <circle cx="30" cy="30" r="0.8" fill="#f9e79f"/>
+  <circle cx="70" cy="15" r="1" fill="#f9e79f"/>
+  
+  <!-- Castle base -->
+  <rect x="25" y="55" width="50" height="30" fill="url(#castle-wall)"/>
+  
+  <!-- Left tower -->
+  <rect x="20" y="40" width="15" height="45" fill="url(#castle-wall)"/>
+  <polygon points="20,40 27.5,28 35,40" fill="#922b21"/>
+  <!-- Battlements -->
+  <rect x="20" y="38" width="4" height="5" fill="#7f8c8d"/>
+  <rect x="26" y="38" width="4" height="5" fill="#7f8c8d"/>
+  
+  <!-- Right tower -->
+  <rect x="65" y="40" width="15" height="45" fill="url(#castle-wall)"/>
+  <polygon points="65,40 72.5,28 80,40" fill="#922b21"/>
+  <!-- Battlements -->
+  <rect x="65" y="38" width="4" height="5" fill="#7f8c8d"/>
+  <rect x="71" y="38" width="4" height="5" fill="#7f8c8d"/>
+  
+  <!-- Center tower (tallest) -->
+  <rect x="40" y="35" width="20" height="50" fill="url(#castle-wall)"/>
+  <polygon points="40,35 50,18 60,35" fill="#c0392b"/>
+  <!-- Flag -->
+  <line x1="50" y1="18" x2="50" y2="10" stroke="#5d4037" stroke-width="1.5"/>
+  <polygon points="50,10 60,13 50,16" fill="#f1c40f"/>
+  
+  <!-- Windows -->
+  <rect x="46" y="45" width="8" height="10" rx="4" fill="#2c3e50"/>
+  <rect x="24" y="50" width="6" height="8" rx="3" fill="#2c3e50"/>
+  <rect x="70" y="50" width="6" height="8" rx="3" fill="#2c3e50"/>
+  
+  <!-- Gate -->
+  <rect x="43" y="65" width="14" height="20" rx="7" fill="#2c3e50"/>
+  <rect x="43" y="70" width="14" height="15" fill="#2c3e50"/>
+  
+  <!-- Gate details -->
+  <line x1="50" y1="70" x2="50" y2="85" stroke="#1a252f" stroke-width="1"/>
+  <line x1="43" y1="75" x2="57" y2="75" stroke="#1a252f" stroke-width="1"/>
+</svg>
