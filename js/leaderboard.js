@@ -28,6 +28,14 @@ function formatWins(wins) {
     return wins;
 }
 
+function getInitials(name) {
+    return name
+        .split(' ')
+        .map(part => part.charAt(0).toUpperCase())
+        .slice(0, 2)
+        .join('');
+}
+
 function sortAndRankPlayers(players) {
     // Sort by Wins (descending), then by GamesPlayed (ascending)
     const sorted = [...players].sort((a, b) => {
@@ -61,29 +69,89 @@ function sortAndRankPlayers(players) {
         return {
             ...player,
             Rank: rankDisplay,
-            WinsFormatted: formatWins(player.Wins)
+            WinsFormatted: formatWins(player.Wins),
+            Initials: getInitials(player.Player)
         };
     });
 }
 
-function renderLeaderboard(players, tableId = 'leaderboard') {
-    const tbody = document.querySelector(`#${tableId} tbody`);
-    if (!tbody) return;
-    
-    tbody.innerHTML = '';
+function renderPodiumPlace(player, position) {
+    return `
+        <div class="podium-place">
+            <div class="avatar">${player.Initials}</div>
+            <div class="name">${player.Player}</div>
+            <div class="score">${player.WinsFormatted} wins</div>
+            <div class="stand">
+                <div class="rank">${position}</div>
+            </div>
+        </div>
+    `;
+}
+
+function renderLeaderboardItem(player) {
+    return `
+        <div class="leaderboard-item">
+            <div class="item-rank">${player.Rank}</div>
+            <div class="item-avatar">${player.Initials}</div>
+            <div class="item-info">
+                <div class="item-name">${player.Player}</div>
+                <div class="item-games">${player.GamesPlayed} games played</div>
+            </div>
+            <div class="item-wins">${player.WinsFormatted}</div>
+        </div>
+    `;
+}
+
+function renderLeaderboard(players, containerId = 'leaderboard-container') {
+    const container = document.getElementById(containerId);
+    if (!container) return;
     
     const ranked = sortAndRankPlayers(players);
     
-    ranked.forEach(player => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${player.Rank}</td>
-            <td>${player.Player}</td>
-            <td>${player.WinsFormatted}</td>
-            <td>${player.GamesPlayed}</td>
-        `;
-        tbody.appendChild(row);
-    });
+    // Filter players with wins for podium (top 3 with wins > 0)
+    const playersWithWins = ranked.filter(p => parseFloat(p.Wins) > 0);
+    const top3 = playersWithWins.slice(0, 3);
+    const rest = ranked.slice(top3.length);
+    
+    let html = '';
+    
+    // Render podium if we have players with wins
+    if (top3.length > 0) {
+        html += '<div class="podium">';
+        
+        // Podium order: 2nd, 1st, 3rd (visual layout)
+        if (top3.length >= 2) {
+            html += renderPodiumPlace(top3[1], 2); // 2nd place (left)
+        } else {
+            html += '<div class="podium-place"></div>'; // Empty placeholder
+        }
+        
+        html += renderPodiumPlace(top3[0], 1); // 1st place (center)
+        
+        if (top3.length >= 3) {
+            html += renderPodiumPlace(top3[2], 3); // 3rd place (right)
+        } else {
+            html += '<div class="podium-place"></div>'; // Empty placeholder
+        }
+        
+        html += '</div>';
+    }
+    
+    // Render remaining players list
+    if (rest.length > 0) {
+        html += '<div class="leaderboard">';
+        rest.forEach(player => {
+            html += renderLeaderboardItem(player);
+        });
+        html += '</div>';
+    }
+    
+    // Empty state
+    if (top3.length === 0 && rest.length === 0) {
+        html = '<div class="empty-podium">No players yet</div>';
+    }
+    
+    container.innerHTML = html;
 }
 
 // Merge data from multiple CSVs (for combined leaderboard)
