@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #2e1a1a 0%, #3e1616 50%, #601010 100%);
@@ -15,11 +19,12 @@ body {
     align-items: flex-start;
     position: relative;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: -50%;
     left: -50%;
     width: 200%;
@@ -27,6 +32,7 @@ body::before {
     background: radial-gradient(circle, rgba(231, 76, 60, 0.1) 0%, transparent 70%);
     animation: glow 15s ease-in-out infinite;
     pointer-events: none;
+    z-index: 0;
 }
 
 @keyframes glow {
