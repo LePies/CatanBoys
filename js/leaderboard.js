@@ -56,36 +56,57 @@ function getInitials(name) {
         .join('');
 }
 
-function sortAndRankPlayers(players) {
-    // Sort by Wins (descending), then by GamesPlayed (ascending)
-    const sorted = [...players].sort((a, b) => {
+function getWinRate(player) {
+    const games = parseInt(player.GamesPlayed) || 0;
+    if (games === 0) return 0;
+    return (parseFloat(player.Wins) || 0) / games;
+}
+
+function formatWinRate(player) {
+    const rate = getWinRate(player);
+    if (rate === 0 && (parseInt(player.GamesPlayed) || 0) === 0) return '-';
+    return (rate * 100).toFixed(1) + '%';
+}
+
+function sortAndRankPlayers(players, sortBy = 'wins') {
+    const withWinRate = players.map(p => ({
+        ...p,
+        WinRate: getWinRate(p),
+        WinRateFormatted: formatWinRate(p)
+    }));
+
+    const sorted = [...withWinRate].sort((a, b) => {
+        if (sortBy === 'winRate') {
+            if (b.WinRate !== a.WinRate) return b.WinRate - a.WinRate;
+            const gamesA = parseInt(a.GamesPlayed) || 0;
+            const gamesB = parseInt(b.GamesPlayed) || 0;
+            if (gamesB !== gamesA) return gamesB - gamesA;
+        }
         const winsA = parseFloat(a.Wins) || 0;
         const winsB = parseFloat(b.Wins) || 0;
         if (winsB !== winsA) return winsB - winsA;
         return (parseInt(a.GamesPlayed) || 0) - (parseInt(b.GamesPlayed) || 0);
     });
-    
-    // Assign ranks
+
+    const rankKey = sortBy === 'winRate' ? 'WinRate' : 'Wins';
     let rank = 1;
-    let prevWins = null;
-    
+    let prevValue = null;
+
     return sorted.map((player, index) => {
-        const wins = parseFloat(player.Wins) || 0;
+        const value = rankKey === 'WinRate' ? player.WinRate : parseFloat(player.Wins) || 0;
+        const hasValue = rankKey === 'WinRate' ? (player.WinRate > 0 && (parseInt(player.GamesPlayed) || 0) > 0) : value > 0;
         let rankDisplay;
-        
-        if (wins === 0) {
+
+        if (!hasValue) {
             rankDisplay = '-';
-        } else if (prevWins === wins) {
+        } else if (prevValue === value) {
             rankDisplay = rank;
         } else {
             rank = index + 1;
             rankDisplay = rank;
         }
-        
-        if (wins > 0) {
-            prevWins = wins;
-        }
-        
+        if (hasValue) prevValue = value;
+
         return {
             ...player,
             Rank: rankDisplay,
@@ -97,13 +118,14 @@ function sortAndRankPlayers(players) {
 
 function renderPodiumPlace(player, position, basePath = '') {
     const profilePath = getProfilePath(player.Player, basePath);
+    const winRateText = player.WinRateFormatted !== '-' ? ` (${player.WinRateFormatted})` : '';
     return `
         <div class="podium-place">
             <div class="avatar">
                 <img src="${profilePath}" alt="${player.Player}">
             </div>
             <div class="name">${player.Player}</div>
-            <div class="score">${player.WinsFormatted} wins</div>
+            <div class="score">${player.WinsFormatted} wins${winRateText}</div>
             <div class="stand">
                 <div class="rank">${position}</div>
             </div>
@@ -121,49 +143,61 @@ function renderLeaderboardItem(player, basePath = '') {
             </div>
             <div class="item-info">
                 <div class="item-name">${player.Player}</div>
-                <div class="item-games">${player.GamesPlayed} games played</div>
+                <div class="item-games">${player.GamesPlayed} games played · ${player.WinRateFormatted} win rate</div>
             </div>
             <div class="item-wins">${player.WinsFormatted}</div>
         </div>
     `;
 }
 
-function renderLeaderboard(players, containerId = 'leaderboard-container', basePath = '') {
+// Stored for re-render when sort changes
+let currentLeaderboardPlayers = null;
+let currentLeaderboardContainerId = 'leaderboard-container';
+let currentLeaderboardBasePath = '';
+
+function renderLeaderboard(players, containerId = 'leaderboard-container', basePath = '', sortBy = 'wins') {
     const container = document.getElementById(containerId);
     if (!container) return;
-    
-    const ranked = sortAndRankPlayers(players);
-    
-    // Filter players with wins for podium (top 3 with wins > 0)
-    const playersWithWins = ranked.filter(p => parseFloat(p.Wins) > 0);
-    const top3 = playersWithWins.slice(0, 3);
+
+    currentLeaderboardPlayers = players;
+    currentLeaderboardContainerId = containerId;
+    currentLeaderboardBasePath = basePath;
+
+    const ranked = sortAndRankPlayers(players, sortBy);
+
+    // For podium: top 3 by current sort (wins or win rate; require at least 1 game for win rate)
+    const hasSignificant = sortBy === 'winRate'
+        ? (p) => (parseInt(p.GamesPlayed) || 0) > 0 && p.WinRate > 0
+        : (p) => parseFloat(p.Wins) > 0;
+    const playersForPodium = ranked.filter(hasSignificant);
+    const top3 = playersForPodium.slice(0, 3);
     const rest = ranked.slice(top3.length);
-    
+
     let html = '';
-    
-    // Render podium if we have players with wins
+
+    // Sort control (button toggles between Wins and Win rate)
+    const sortLabel = sortBy === 'wins' ? 'Sort: Wins' : 'Sort: Win rate';
+    html += '<div class="leaderboard-sort">';
+    html += '<button type="button" id="leaderboard-sort-btn" class="leaderboard-sort-btn" aria-label="Switch sort">' + sortLabel + '</button>';
+    html += '</div>';
+
+    // Render podium if we have top 3 by current sort
     if (top3.length > 0) {
         html += '<div class="podium">';
-        
-        // Podium order: 2nd, 1st, 3rd (visual layout)
         if (top3.length >= 2) {
-            html += renderPodiumPlace(top3[1], 2, basePath); // 2nd place (left)
+            html += renderPodiumPlace(top3[1], 2, basePath);
         } else {
-            html += '<div class="podium-place"></div>'; // Empty placeholder
+            html += '<div class="podium-place"></div>';
         }
-        
-        html += renderPodiumPlace(top3[0], 1, basePath); // 1st place (center)
-        
+        html += renderPodiumPlace(top3[0], 1, basePath);
         if (top3.length >= 3) {
-            html += renderPodiumPlace(top3[2], 3, basePath); // 3rd place (right)
+            html += renderPodiumPlace(top3[2], 3, basePath);
         } else {
-            html += '<div class="podium-place"></div>'; // Empty placeholder
+            html += '<div class="podium-place"></div>';
         }
-        
         html += '</div>';
     }
-    
-    // Render remaining players list
+
     if (rest.length > 0) {
         html += '<div class="leaderboard">';
         rest.forEach(player => {
@@ -171,17 +205,24 @@ function renderLeaderboard(players, containerId = 'leaderboard-container', baseP
         });
         html += '</div>';
     }
-    
-    // Empty state
+
     if (top3.length === 0 && rest.length === 0) {
-        html = '<div class="empty-podium">No players yet</div>';
+        html += '<div class="empty-podium">No players yet</div>';
     }
-    
+
     container.innerHTML = html;
+
+    const sortBtn = document.getElementById('leaderboard-sort-btn');
+    if (sortBtn) {
+        sortBtn.addEventListener('click', () => {
+            const nextSort = sortBy === 'wins' ? 'winRate' : 'wins';
+            renderLeaderboard(currentLeaderboardPlayers, currentLeaderboardContainerId, currentLeaderboardBasePath, nextSort);
+        });
+    }
 }
 
 // Merge data from multiple CSVs (for combined leaderboard)
-function mergePlayers(standardPlayers, caravanPlayers) {
+function mergePlayers(standardPlayers, caravanPlayers, seafarersPlayers = []) {
     const merged = {};
     
     // Add standard data
@@ -207,6 +248,20 @@ function mergePlayers(standardPlayers, caravanPlayers) {
         }
     });
     
+    // Add seafarers data
+    seafarersPlayers.forEach(p => {
+        if (merged[p.Player]) {
+            merged[p.Player].Wins += parseFloat(p.Wins) || 0;
+            merged[p.Player].GamesPlayed += parseInt(p.GamesPlayed) || 0;
+        } else {
+            merged[p.Player] = {
+                Player: p.Player,
+                Wins: parseFloat(p.Wins) || 0,
+                GamesPlayed: parseInt(p.GamesPlayed) || 0
+            };
+        }
+    });
+    
     return Object.values(merged);
 }
 
@@ -214,11 +269,12 @@ function mergePlayers(standardPlayers, caravanPlayers) {
 async function initLeaderboard(type, csvPath, basePath = '') {
     try {
         if (type === 'combined') {
-            const [standard, caravan] = await Promise.all([
+            const [standard, caravan, seafarers] = await Promise.all([
                 loadCSV(csvPath.standard),
-                loadCSV(csvPath.caravan)
+                loadCSV(csvPath.caravan),
+                loadCSV(csvPath.seafarers)
             ]);
-            const combined = mergePlayers(standard, caravan);
+            const combined = mergePlayers(standard, caravan, seafarers);
             renderLeaderboard(combined, 'leaderboard-container', basePath);
         } else {
             const players = await loadCSV(csvPath);

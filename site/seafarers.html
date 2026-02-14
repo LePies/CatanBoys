@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caravan</title>
-  <link rel="icon" type="image/svg+xml" href="../figures/wagon.svg">
-  <link rel="stylesheet" href="../css/caravan-styles.css">
+  <title>Seafarers</title>
+  <link rel="icon" type="image/svg+xml" href="../figures/ship.svg">
+  <link rel="stylesheet" href="../css/seafarers-styles.css">
 </head>
 <body>
 <!-- Mobile Menu Toggle -->
@@ -38,11 +38,11 @@
       <img src="../figures/favicon.svg" alt="Standard">
       Standard
     </a>
-    <a href="caravan.html" class="active">
+    <a href="caravan.html">
       <img src="../figures/wagon.svg" alt="Caravan">
       Caravan
     </a>
-    <a href="seafarers.html">
+    <a href="seafarers.html" class="active">
       <img src="../figures/ship.svg" alt="Seafarers">
       Seafarers
     </a>
@@ -50,13 +50,13 @@
 </nav>
 
 <div class="container">
-  <h1>Caravan</h1>
+  <h1>Seafarers</h1>
   <div id="leaderboard-container"></div>
 </div>
 
 <script src="../js/leaderboard.js"></script>
 <script>
-  initLeaderboard('single', '../data/caravan.csv', '../');
+  initLeaderboard('single', '../data/seafarers.csv', '../');
 
   // Mobile menu toggle
   const menuToggle = document.getElementById('menuToggle');
