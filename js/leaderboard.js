@@ -82,19 +82,33 @@ function sortAndRankPlayers(players, sortBy = 'wins') {
             const gamesB = parseInt(b.GamesPlayed) || 0;
             if (gamesB !== gamesA) return gamesB - gamesA;
         }
+        if (sortBy === 'appearances') {
+            const gamesA = parseInt(a.GamesPlayed) || 0;
+            const gamesB = parseInt(b.GamesPlayed) || 0;
+            if (gamesB !== gamesA) return gamesB - gamesA;
+        }
         const winsA = parseFloat(a.Wins) || 0;
         const winsB = parseFloat(b.Wins) || 0;
         if (winsB !== winsA) return winsB - winsA;
         return (parseInt(a.GamesPlayed) || 0) - (parseInt(b.GamesPlayed) || 0);
     });
 
-    const rankKey = sortBy === 'winRate' ? 'WinRate' : 'Wins';
+    const rankKey = sortBy === 'winRate' ? 'WinRate' : sortBy === 'appearances' ? 'GamesPlayed' : 'Wins';
     let rank = 1;
     let prevValue = null;
 
     return sorted.map((player, index) => {
-        const value = rankKey === 'WinRate' ? player.WinRate : parseFloat(player.Wins) || 0;
-        const hasValue = rankKey === 'WinRate' ? (player.WinRate > 0 && (parseInt(player.GamesPlayed) || 0) > 0) : value > 0;
+        let value, hasValue;
+        if (rankKey === 'WinRate') {
+            value = player.WinRate;
+            hasValue = player.WinRate > 0 && (parseInt(player.GamesPlayed) || 0) > 0;
+        } else if (rankKey === 'GamesPlayed') {
+            value = parseInt(player.GamesPlayed) || 0;
+            hasValue = value > 0;
+        } else {
+            value = parseFloat(player.Wins) || 0;
+            hasValue = value > 0;
+        }
         let rankDisplay;
 
         if (!hasValue) {
@@ -165,9 +179,11 @@ function renderLeaderboard(players, containerId = 'leaderboard-container', baseP
 
     const ranked = sortAndRankPlayers(players, sortBy);
 
-    // For podium: top 3 by current sort (wins or win rate; require at least 1 game for win rate)
+    // For podium: top 3 by current sort
     const hasSignificant = sortBy === 'winRate'
         ? (p) => (parseInt(p.GamesPlayed) || 0) > 0 && p.WinRate > 0
+        : sortBy === 'appearances'
+        ? (p) => (parseInt(p.GamesPlayed) || 0) > 0
         : (p) => parseFloat(p.Wins) > 0;
     const playersForPodium = ranked.filter(hasSignificant);
     const top3 = playersForPodium.slice(0, 3);
@@ -175,8 +191,9 @@ function renderLeaderboard(players, containerId = 'leaderboard-container', baseP
 
     let html = '';
 
-    // Sort control (button toggles between Wins and Win rate)
-    const sortLabel = sortBy === 'wins' ? 'Sort: Wins' : 'Sort: Win rate';
+    // Sort control (button cycles Wins → Win rate → Appearances → Wins)
+    const sortLabels = { wins: 'Sort: Wins', winRate: 'Sort: Win rate', appearances: 'Sort: Appearances' };
+    const sortLabel = sortLabels[sortBy] || sortLabels.wins;
     html += '<div class="leaderboard-sort">';
     html += '<button type="button" id="leaderboard-sort-btn" class="leaderboard-sort-btn" aria-label="Switch sort">' + sortLabel + '</button>';
     html += '</div>';
@@ -215,7 +232,9 @@ function renderLeaderboard(players, containerId = 'leaderboard-container', baseP
     const sortBtn = document.getElementById('leaderboard-sort-btn');
     if (sortBtn) {
         sortBtn.addEventListener('click', () => {
-            const nextSort = sortBy === 'wins' ? 'winRate' : 'wins';
+            const order = ['wins', 'winRate', 'appearances'];
+            const idx = order.indexOf(sortBy);
+            const nextSort = order[(idx + 1) % order.length];
             renderLeaderboard(currentLeaderboardPlayers, currentLeaderboardContainerId, currentLeaderboardBasePath, nextSort);
         });
     }
